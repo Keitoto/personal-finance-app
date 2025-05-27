@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header } from '@/components/Header'
 import { TransactionItem } from '@/components/TransactionItem'
+import { TransactionSummaryItem } from '@/components/TransactionSummaryItem'
 import { Trend } from '@/components/Trend'
 
 export default function page() {
@@ -44,6 +45,25 @@ export default function page() {
             amount={500}
             category="Stocks"
             description="Investment in tech stocks"
+          />
+        </div>
+      </div>
+
+      <div>
+        <h2 className="text-xl">Transaction Summary Item</h2>
+        <hr className="my-4" />
+        <div className="space-y-4">
+          <TransactionSummaryItem
+            date="2023-10-01"
+            amount={1000}
+          />
+          <TransactionSummaryItem
+            date="2023-10-02"
+            amount={200}
+          />
+          <TransactionSummaryItem
+            date="2023-10-03"
+            amount={500}
           />
         </div>
       </div>
