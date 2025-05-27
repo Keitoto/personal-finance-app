@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function Header() {
+export function Header() {
   return (
     <header className="flex justify-between items-center">
       <Link href="/dashboard" className="text-xl hover:underline underline-offset-8 decoration-2">Personal Finance</Link>

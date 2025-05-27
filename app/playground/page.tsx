@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '@/components/Header'
-import TransactionItem from '@/components/TransactionItem'
-import Trend from '@/components/Trend'
+import { Header } from '@/components/Header'
+import { TransactionItem } from '@/components/TransactionItem'
+import { Trend } from '@/components/Trend'
 
 export default function page() {
   return (

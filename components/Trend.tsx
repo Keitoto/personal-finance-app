@@ -15,7 +15,7 @@ const colorClasses = {
   saving: 'text-yellow-700 dark:text-yellow-300',
 }
 
-export default function Trend({ type, amount, prevAmount = 0 }: Props) {
+export function Trend({ type, amount, prevAmount = 0 }: Props) {
   const percentageChange = useMemo(() => Math.round(calcPercentageChange(amount, prevAmount)), [amount, prevAmount])
 
   return (

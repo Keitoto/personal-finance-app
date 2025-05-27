@@ -29,7 +29,7 @@ const typesMap = {
   },
 }
 
-export default function TransactionItem({ type, amount, category, description }: Props) {
+export function TransactionItem({ type, amount, category, description }: Props) {
   const IconComponent = typesMap[type].icon
   const iconColor = typesMap[type].colors
 
