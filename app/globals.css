@@ -43,12 +43,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-@layer base {
-  .container {
-    @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-}
-
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -124,5 +118,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  .container {
+    @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
