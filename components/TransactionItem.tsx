@@ -37,20 +37,21 @@ export default function TransactionItem({ type, amount, category, description }:
     <div className="flex items-center gap-4">
       <div className="flex items-center grow">
         <IconComponent className={`size-4 ${iconColor} mr-2 hidden sm:block`} />
-        <span className="">{description}</span>
+        <span>{description}</span>
       </div>
 
-      <div className="min-w-[150px] hidden md:flex items-center justify-self-start">
-        <small className=" text-sm font-semibold px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md">{category}</small>
+      <div className="min-w-[150px] hidden md:flex items-center">
+        {category && <div className="rounded-md text-xs bg-foreground text-background px-2 py-0.5">{category}</div>}
+
       </div>
 
-      <div className="min-w-[100px]">
+      <div className="min-w-[70px] text-right">
         <div className={`text-lg text-right font-bold ${type === 'income' ? 'text-green-700' : 'text-red-700'}`}>
           {formatCurrency(amount)}
         </div>
       </div>
 
-      <div>
+      <div className="min-w-[50px] flex justify-end">
         <Button variant="ghost" className="p-2">...</Button>
       </div>
     </div>
