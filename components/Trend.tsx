@@ -1,9 +1,10 @@
+import type { Transaction } from '@/types'
 import { ArrowDownRight, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useMemo } from 'react'
 import { calcPercentageChange, formatCurrency } from '@/utils'
 
 interface Props {
-  type: 'income' | 'expense' | 'investment' | 'saving'
+  type: Transaction['type']
   amount: number
   prevAmount?: number
 }

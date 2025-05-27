@@ -1,14 +1,10 @@
+import type { Transaction } from '@/types'
 import { HandCoins, Landmark, PiggyBank, Wallet } from 'lucide-react'
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { formatCurrency } from '@/utils'
 
-interface Props {
-  type: 'income' | 'expense' | 'investment' | 'saving'
-  amount: number
-  category: string
-  description?: string
-}
+type Props = Pick<Transaction, 'type' | 'amount' | 'category' | 'description'>
 
 const typesMap = {
   income: {
