@@ -30,7 +30,7 @@ export function TransactionItem({ type, amount, category, description }: Props) 
   const iconColor = typesMap[type].colors
 
   return (
-    <div className="flex items-center gap-4">
+    <li className="flex items-center gap-4">
       <div className="flex items-center grow">
         <IconComponent className={`size-4 ${iconColor} mr-2 hidden sm:block`} />
         <span>{description}</span>
@@ -50,6 +50,6 @@ export function TransactionItem({ type, amount, category, description }: Props) 
       <div className="min-w-[70px] flex justify-end">
         <Button variant="ghost" className="p-2">...</Button>
       </div>
-    </div>
+    </li>
   )
 }
