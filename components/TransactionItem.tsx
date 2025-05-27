@@ -46,12 +46,12 @@ export function TransactionItem({ type, amount, category, description }: Props) 
       </div>
 
       <div className="min-w-[70px] text-right">
-        <div className={`text-lg text-right font-bold ${type === 'income' ? 'text-green-700' : 'text-red-700'}`}>
+        <div className={`text-right font-bold ${type === 'income' ? 'text-green-700' : 'text-red-700'}`}>
           {formatCurrency(amount)}
         </div>
       </div>
 
-      <div className="min-w-[50px] flex justify-end">
+      <div className="min-w-[70px] flex justify-end">
         <Button variant="ghost" className="p-2">...</Button>
       </div>
     </div>

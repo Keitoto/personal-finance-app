@@ -28,6 +28,10 @@ export default function page() {
         <h2 className="text-xl">Transaction Item</h2>
         <hr className="my-4" />
         <div className="space-y-4">
+          <TransactionSummaryItem
+            date="2023-10-01"
+            amount={1000}
+          />
           <TransactionItem
             type="income"
             amount={1000}
@@ -53,10 +57,7 @@ export default function page() {
         <h2 className="text-xl">Transaction Summary Item</h2>
         <hr className="my-4" />
         <div className="space-y-4">
-          <TransactionSummaryItem
-            date="2023-10-01"
-            amount={1000}
-          />
+
           <TransactionSummaryItem
             date="2023-10-02"
             amount={200}

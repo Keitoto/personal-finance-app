@@ -10,13 +10,13 @@ export function TransactionSummaryItem({ date, amount }: Props) {
   const formattedAmount = formatCurrency(amount)
 
   return (
-    <div className="flex font-semibold">
+    <div className="flex font-semibold gap-4">
       <div className="grow">
         {date}
       </div>
 
       <div className="min-w-[70px] text-right font-semibold">{formattedAmount}</div>
-      <div className="min-w-[50px]"></div>
+      <div className="min-w-[70px]"></div>
     </div>
   )
 }
