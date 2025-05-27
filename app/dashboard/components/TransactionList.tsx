@@ -1,6 +1,8 @@
-import type { Transaction } from '@/types'
+import type { ApiTransaction, Transaction } from '@/types'
 import React from 'react'
 import { TransactionItem } from '@/components/TransactionItem'
+import { TransactionSummaryItem } from '@/components/TransactionSummaryItem'
+import { Separator } from '@/components/ui/separator'
 
 async function getTransactions(): Promise<Transaction[]> {
   const res = await fetch('http://localhost:3100/transactions', {
@@ -11,7 +13,27 @@ async function getTransactions(): Promise<Transaction[]> {
     throw new Error(`Failed to fetch transactions: ${res.status}`)
   }
 
-  return res.json()
+  const data = await res.json()
+
+  return data.map((item: ApiTransaction) => ({
+    ...item,
+    createdAt: item.created_at,
+  }
+  ))
+}
+
+function groupAndSumTransactionsByDate(transactions: Transaction[]) {
+  const grouped: { [date: string]: { transactions: Transaction[], amount: number } } = {}
+  for (const transaction of transactions) {
+    const date = transaction.createdAt.split('T')[0]
+    if (!grouped[date]) {
+      grouped[date] = { transactions: [], amount: 0 }
+    }
+    grouped[date].transactions.push(transaction)
+    const amount = transaction.type === 'income' ? transaction.amount : -transaction.amount
+    grouped[date].amount += amount
+  }
+  return grouped
 }
 
 export async function TransactionList() {
@@ -22,20 +44,29 @@ export async function TransactionList() {
       return <div className="text-gray-500">No transactions found.</div>
     }
 
+    const grouped = groupAndSumTransactionsByDate(transactions)
+
     return (
-      <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Recent Transactions</h2>
-        <div className="space-y-1">
-          {transactions.map(transaction => (
-            <TransactionItem
-              key={transaction.id}
-              type={transaction.type}
-              amount={transaction.amount}
-              category={transaction.category}
-              description={transaction.description}
-            />
+      <section className="">
+        <ul className="space-y-8">
+          {Object.entries(grouped).map(([date, { transactions, amount }]) => (
+            <li key={date} className="">
+              <TransactionSummaryItem date={date} amount={amount} />
+              <Separator className="my-4" />
+              <ul className="">
+                {transactions.map(transaction => (
+                  <TransactionItem
+                    key={transaction.id}
+                    type={transaction.type}
+                    amount={transaction.amount}
+                    category={transaction.category}
+                    description={transaction.description}
+                  />
+                ))}
+              </ul>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     )
   }
