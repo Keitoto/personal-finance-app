@@ -23,6 +23,14 @@
       "description": "Salary",
       "category": "",
       "created_at": "2023-03-15T23:00:00"
+    },
+    {
+      "id": 4,
+      "amount": 500,
+      "type": "expense",
+      "description": "Rent",
+      "category": "",
+      "created_at": "2024-03-15T23:00:00"
     }
   ]
 }
