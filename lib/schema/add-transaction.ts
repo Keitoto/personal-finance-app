@@ -16,7 +16,10 @@ export const addTransactionSchema = z
           message: 'Date must be in YYYY-MM-DD format',
         },
       ),
-    amount: z.number({ required_error: 'Amount is required' }).positive('Amount must be at least 1'),
+    amount: z.preprocess(
+      val => val === '' ? undefined : val,
+      z.number({ required_error: 'Amount is required', invalid_type_error: 'Amount is required' }).positive('Amount must be at least 1'),
+    ),
     description: z.string().optional(),
   })
   .superRefine((data, ctx) => {
