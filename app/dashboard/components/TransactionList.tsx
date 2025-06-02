@@ -52,7 +52,7 @@ export async function TransactionList() {
           {Object.entries(grouped).map(([date, { transactions, amount }]) => (
             <li key={date} className="">
               <TransactionSummaryItem date={date} amount={amount} />
-              <Separator className="my-4" />
+              <Separator className="my-2" />
               <ul className="">
                 {transactions.map(transaction => (
                   <TransactionItem

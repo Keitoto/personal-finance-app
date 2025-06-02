@@ -10,7 +10,7 @@ export function TransactionSummaryItem({ date, amount }: Props) {
   const formattedAmount = formatCurrency(amount)
 
   return (
-    <div className="flex font-semibold gap-4">
+    <div className="flex font-semibold text-muted-foreground gap-4">
       <div className="grow">
         {date}
       </div>
