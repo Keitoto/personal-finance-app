@@ -1,7 +1,8 @@
+import type { TransactionType } from '@/lib/consts'
 import { Trend } from '@/components/Trend'
 
 interface Props {
-  type: 'income' | 'expense' | 'saving' | 'investment'
+  type: TransactionType
 }
 
 export async function TrendLoader({ type }: Props) {

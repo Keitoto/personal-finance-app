@@ -35,19 +35,19 @@ export default function page() {
           <TransactionItem
             type="income"
             amount={1000}
-            category="Salary"
+            category="salary"
             description="Monthly salary for September"
           />
           <TransactionItem
             type="expense"
             amount={200}
-            category="Groceries"
+            category="groceries"
             description="Weekly grocery shopping"
           />
           <TransactionItem
             type="investment"
             amount={500}
-            category="Stocks"
+            category="stocks"
             description="Investment in tech stocks"
           />
         </div>

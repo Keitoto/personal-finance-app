@@ -2,6 +2,7 @@ import type { Transaction } from '@/types'
 import { HandCoins, Landmark, PiggyBank, Wallet } from 'lucide-react'
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import { transactionTypeColorClasses } from '@/lib/consts'
 import { formatCurrency } from '@/utils'
 
 type Props = Pick<Transaction, 'type' | 'amount' | 'category' | 'description'>
@@ -9,19 +10,19 @@ type Props = Pick<Transaction, 'type' | 'amount' | 'category' | 'description'>
 const typesMap = {
   income: {
     icon: HandCoins,
-    colors: 'text-green-500 dark:text-green-400',
+    colors: transactionTypeColorClasses.income,
   },
   expense: {
     icon: Wallet,
-    colors: 'text-red-500 dark:text-red-400',
+    colors: transactionTypeColorClasses.expense,
   },
   saving: {
     icon: PiggyBank,
-    colors: 'text-indigo-500 dark:text-indigo-400',
+    colors: transactionTypeColorClasses.saving,
   },
   investment: {
     icon: Landmark,
-    colors: 'text-yellow-500 dark:text-yellow-400',
+    colors: transactionTypeColorClasses.investment,
   },
 }
 
