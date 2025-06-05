@@ -1,5 +1,4 @@
 import type { ApiTransaction, Transaction } from '@/types'
-import process from 'node:process'
 import { TransactionItem } from '@/components/TransactionItem'
 import { TransactionSummaryItem } from '@/components/TransactionSummaryItem'
 import { Separator } from '@/components/ui/separator'

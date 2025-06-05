@@ -1,5 +1,4 @@
 import type { TransactionType } from '@/lib/consts'
-import process from 'node:process'
 import { Trend } from '@/components/Trend'
 
 interface Props {
