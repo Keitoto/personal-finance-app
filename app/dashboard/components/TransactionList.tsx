@@ -5,7 +5,9 @@ import { Separator } from '@/components/ui/separator'
 
 async function getTransactions(): Promise<Transaction[]> {
   const res = await fetch(`${process.env.API_URL}/transactions`, {
-    cache: 'no-store',
+    next: {
+      tags: ['transaction-list'],
+    },
   })
 
   if (!res.ok) {
