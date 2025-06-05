@@ -2,7 +2,8 @@
 
 import type { AddTransactionSchema } from '@/lib/schema/add-transaction'
 import { zodResolver } from '@hookform/resolvers/zod'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -13,11 +14,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { purgeTransactionListCache } from '@/lib/actions'
 import { categoriesByType, transactionType } from '@/lib/consts'
 import { addTransactionSchema } from '@/lib/schema/add-transaction'
 
 export function TransactionForm() {
+  const router = useRouter()
   const today = new Date().toISOString().slice(0, 10)
+  const [isSaving, setIsSaving] = useState(false)
   const form = useForm<AddTransactionSchema>({
     mode: 'onTouched',
     resolver: zodResolver(addTransactionSchema),
@@ -35,13 +39,30 @@ export function TransactionForm() {
   const categoryOptions = categoriesByType[selectedType]
 
   // Reset category when type changes
-  React.useEffect(() => {
+  useEffect(() => {
     form.setValue('category', '')
   }, [selectedType, form])
 
-  const handleSubmit = (data: AddTransactionSchema) => {
+  const handleSubmit = async (data: AddTransactionSchema) => {
     // TODO Handle form submission logic here
-    console.warn('Form submitted with data:', data)
+    setIsSaving(true)
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          created_at: `${data.date}T00:00:00`,
+        }),
+      })
+      await purgeTransactionListCache()
+      router.push('/dashboard')
+    }
+    finally {
+      setIsSaving(false)
+    }
   }
 
   return (
@@ -160,7 +181,7 @@ export function TransactionForm() {
         </div>
 
         <div className="flex mt-4">
-          <Button className="cursor-pointer">Save</Button>
+          <Button className="cursor-pointer" disabled={isSaving}>Save</Button>
         </div>
       </form>
     </Form>
