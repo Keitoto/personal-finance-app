@@ -1,4 +1,5 @@
 import type { TransactionType } from '@/lib/consts'
+import process from 'node:process'
 import { Trend } from '@/components/Trend'
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 
 export async function TrendLoader({ type }: Props) {
   try {
-    const res = await fetch(`http://localhost:3100/trends/${type}`, {
+    const res = await fetch(`${process.env.API_URL}/trends/${type}`, {
       cache: 'no-store',
     })
     if (!res.ok) {

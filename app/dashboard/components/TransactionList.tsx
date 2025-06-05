@@ -1,11 +1,11 @@
 import type { ApiTransaction, Transaction } from '@/types'
-import React from 'react'
+import process from 'node:process'
 import { TransactionItem } from '@/components/TransactionItem'
 import { TransactionSummaryItem } from '@/components/TransactionSummaryItem'
 import { Separator } from '@/components/ui/separator'
 
 async function getTransactions(): Promise<Transaction[]> {
-  const res = await fetch('http://localhost:3100/transactions', {
+  const res = await fetch(`${process.env.API_URL}/transactions`, {
     cache: 'no-store',
   })
 
