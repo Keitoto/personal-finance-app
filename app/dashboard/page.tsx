@@ -1,14 +1,18 @@
 import { PlusCircle } from 'lucide-react'
 import Link from 'next/link'
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { TransactionList } from '@/app/dashboard/components/TransactionList'
 import { TransactionListFallback } from '@/app/dashboard/components/TransactionListFallback'
 import { TrendLoader } from '@/app/dashboard/components/TrendLoader'
 import { TrendLoaderFallback } from '@/app/dashboard/components/TrendLoaderFallback'
 import { Button } from '@/components/ui/button'
 import { transactionType } from '@/lib/consts'
+import { createClient } from '@/lib/supabase/server'
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const client = createClient()
+  console.warn((await client).from('transactions').select())
+
   return (
     <>
       <section className="mb-8">
